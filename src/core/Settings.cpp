@@ -23,6 +23,16 @@ DWORD Settings::GetUFOModeKey() const {
 	return m_UFOModeToggleKey;
 }
 
+DWORD Settings::GetHideHUDKey() const
+{
+	return m_HideHUDKey;
+}
+
+DWORD Settings::GetPrecisionModeKey() const
+{
+	return m_PrecisionModeKey;
+}
+
 DWORD Settings::GetBoostKey() const
 {
 	return m_BoostKey;

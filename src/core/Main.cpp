@@ -20,6 +20,8 @@ void SimpleNoclip::Init()
 
 	m_NoclipKey = ptrSettings->GetNoclipKey(); // N key
 	m_UFOModeKey = ptrSettings->GetUFOModeKey();
+	m_PrecisionModeKey = ptrSettings->GetPrecisionModeKey();
+	m_HideHUDKey = ptrSettings->GetHideHUDKey();
 	m_BoostKey = ptrSettings->GetBoostKey();
 	m_MoveForwardKey = ptrSettings->GetMoveForwardKey();
 	m_MoveBackwardKey = ptrSettings->GetMoveBackwardKey();
@@ -50,10 +52,19 @@ void SimpleNoclip::Update()
 			m_UFOMode = !m_UFOMode;
 		}
 
+		if (GTA::Controls::IsKeyJustUp(m_HideHUDKey)) {
+			m_HideHUD = !m_HideHUD;
+		}
+
 		HandleSpeedModifier();
 		DoNoclip();
 
-		ptrUIManager->Render();
+		if (!IsHUDHidden()) {
+			ptrUIManager->Render();
+		}
+		else {
+			HUD::HIDE_HUD_AND_RADAR_THIS_FRAME();
+		}
 	}
 }
 
@@ -199,6 +210,10 @@ void SimpleNoclip::HandleSpeedModifier()
 	if (GTA::Controls::IsKeyDown(VK_SHIFT)) {
 		float boostedSpeed = GetUnboostedSpeedModifier() * SPEED_BOOST_MODIFIER;
 		m_SpeedModifier = std::clamp(boostedSpeed, GetMinSpeed(), GetMaxSpeed());
+	}
+	if (GTA::Controls::IsKeyDown(m_PrecisionModeKey)) {
+		m_SpeedModifier *= 0.1f;
+		m_SpeedModifier = std::clamp(m_SpeedModifier, GetMinSpeed(), GetMaxSpeed());
 	}
 }
 

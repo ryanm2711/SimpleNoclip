@@ -14,6 +14,8 @@ public:
 		m_MaxNoclipSpeed = 1000.0f;
 		m_NoclipKey = 0x4E; // N key by default
 		m_UFOModeToggleKey = 0x47; // G key by default
+		m_PrecisionModeKey = 0x58; // X key by default
+		m_HideHUDKey = 0x48; // H key by default
 
 		// Movement
 		m_MoveForwardKey = 0x57; // W key
@@ -31,7 +33,9 @@ public:
 
 		RegisterSetting<DWORD>(KEYBINDINGS_SECTION, L"NoclipKey", m_NoclipKey, &m_NoclipKey, L"# Key to go in & out of noclip mode. (Default: N)");
 		RegisterSetting<DWORD>(KEYBINDINGS_SECTION, L"UFOModeToggleKey", m_UFOModeToggleKey, &m_UFOModeToggleKey, L"# Toggles UFO mode, meaning the camera does not influence moving vertically. (Default: G)");
-		
+		RegisterSetting<DWORD>(KEYBINDINGS_SECTION, L"PrecisionModeKey", m_PrecisionModeKey, &m_PrecisionModeKey, L"# Hold this key to move at 10% of your current speed for more precise movement. (Default: X)");
+		RegisterSetting<DWORD>(KEYBINDINGS_SECTION, L"HideHUDKey", m_HideHUDKey, &m_HideHUDKey, L"# Key to toggle hiding the HUD. (Default: H)");
+
 		RegisterSetting<DWORD>(KEYBINDINGS_SECTION, L"MoveForwardsKey", m_MoveForwardKey, &m_MoveForwardKey, L"# The key that moves you forward when noclipped. (Default: W)");
 		RegisterSetting<DWORD>(KEYBINDINGS_SECTION, L"MoveBackwardsKey", m_MoveBackwardsKey, &m_MoveBackwardsKey, L"# The key that moves you backwards when noclipped. (Default: S)");
 		RegisterSetting<DWORD>(KEYBINDINGS_SECTION, L"MoveRightKey", m_MoveRightKey, &m_MoveRightKey, L"# The key that moves you right when noclipped. (Default: D)");
@@ -48,6 +52,8 @@ public:
 	DWORD GetBoostKey() const;
 	DWORD GetNoclipKey() const;
 	DWORD GetUFOModeKey() const;
+	DWORD GetHideHUDKey() const;
+	DWORD GetPrecisionModeKey() const;
 	DWORD GetMoveForwardKey() const;
 	DWORD GetMoveBackwardKey() const;
 	DWORD GetMoveRightKey() const;
@@ -69,4 +75,6 @@ private:
 	DWORD m_NoclipKey;
 	DWORD m_UFOModeToggleKey;
 	DWORD m_BoostKey;
+	DWORD m_HideHUDKey;
+	DWORD m_PrecisionModeKey;
 };

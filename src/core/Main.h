@@ -29,6 +29,10 @@ public:
 		return m_UFOMode;
 	}
 
+	inline bool IsHUDHidden() const {
+		return m_HideHUD;
+	}
+
 	inline float GetSpeedModifier() const {
 		return m_SpeedModifier;
 	}
@@ -67,11 +71,13 @@ private:
 	DWORD m_MoveLeftKey;
 	DWORD m_NoclipKey;
 	DWORD m_UFOModeKey;
+	DWORD m_HideHUDKey;
+	DWORD m_PrecisionModeKey;
 	DWORD m_BoostKey;
 	DWORD m_MoveUpKey;
 	DWORD m_MoveDownKey;
 
 	bool m_Noclipping;
-
 	bool m_UFOMode;
+	bool m_HideHUD;
 };
